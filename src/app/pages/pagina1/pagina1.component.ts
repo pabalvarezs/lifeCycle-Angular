@@ -20,7 +20,6 @@ AfterViewChecked, OnDestroy{
   }
 
 
-
   ngOnInit(): void {
     console.log('ngOnInit');
   }
@@ -39,22 +38,38 @@ AfterViewChecked, OnDestroy{
       luego viene afterContentChecked
       y afterViewChecked
     */
-    console.log('ngDoCheck');
-    
+   console.log('ngDoCheck');
+   
   }
   ngAfterContentInit(): void {
     console.log('ngAfterContentInit');
     
   }
   ngAfterContentChecked(): void {
-    console.log('ngAfterContentChecked');
-    
+    /*
+      Es parte del proceso donde se redibuja el html, cuando hacemos una 
+      asociacion entre el componente ts  y html del componente
+      el ciclo es:
+      1.-doCheck
+      2.- afterContentChecked
+      3.- afterViewChecked
+    */
+   console.log('ngAfterContentChecked');
+   
   }
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit');
     
   }
   ngAfterViewChecked(): void {
+    /*
+      Es parte del proceso donde se redibuja el html, cuando hacemos una 
+      asociacion entre el componente ts  y html del componente
+      el ciclo es:
+      1.-doCheck
+      2.- afterContentChecked
+      3.- afterViewChecked
+    */
     console.log('ngAfterViewChecked');
     
   }
