@@ -1,4 +1,5 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pagina1',
@@ -11,6 +12,8 @@ DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
 AfterViewChecked, OnDestroy{
   
   nombre : string = 'Pablo';
+  segundos : number = 0;
+  timerSubscription! : Subscription;
   
   constructor() { 
     /*constructor se ocupa para poner la despendencias, incluso se puede borarr
@@ -18,16 +21,34 @@ AfterViewChecked, OnDestroy{
     */
    console.log('constructor');
   }
-
-
+  
+  
   ngOnInit(): void {
     console.log('ngOnInit');
+    this.timerSubscription = interval(1000).subscribe(i => {
+      this.segundos = i
+      
+    })
+  }
+  
+  ngOnDestroy(): void {
+    /*
+      Se llama cuando el componente es destruido, despues.
+      Es muy utl cuando tienes observable, timmers etc.
+    */
+    console.log('ngOnDestroy');
+    this.timerSubscription.unsubscribe();
+    console.log('timer limpiado');
+    
+    
   }
   
   ngOnChanges(changes: SimpleChanges): void {
     /*
-      Se ejecuta cuando tienes un input de un componente
-      padre a un componente hijo
+    Se ejecuta cuando tienes un input de un componente
+    padre a un componente hijo
+    Cada vez que cambia el valor que el componente padre
+    envia al hijo, se ejecuta el onChanges
     */
    console.log('ngOnChanges');
    
@@ -71,14 +92,6 @@ AfterViewChecked, OnDestroy{
       3.- afterViewChecked
     */
     console.log('ngAfterViewChecked');
-    
-  }
-  ngOnDestroy(): void {
-    /*
-      Se llama cuando el componente es destruido, despues.
-      Es muy utl cuando tienes observable, timmers etc.
-    */
-    console.log('ngOnDestroy');
     
   }
 
