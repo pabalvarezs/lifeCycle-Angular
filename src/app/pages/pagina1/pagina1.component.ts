@@ -7,17 +7,38 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit,
   ]
 })
 export class Pagina1Component implements OnInit, OnChanges,
-   DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
-   AfterViewChecked, OnDestroy{
-
+DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
+AfterViewChecked, OnDestroy{
+  
+  nombre : string = 'Pablo';
+  
   constructor() { 
-    console.log('constructor');
+    /*constructor se ocupa para poner la despendencias, incluso se puede borarr
+    incluso se puede borrar el constructor, pero se implementa igual
+    */
+   console.log('constructor');
   }
+
+
+
+  ngOnInit(): void {
+    console.log('ngOnInit');
+  }
+  
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges');
-    
+    /*
+      Se ejecuta cuando tienes un input de un componente
+      padre a un componente hijo
+    */
+   console.log('ngOnChanges');
+   
   }
   ngDoCheck(): void {
+    /*
+      Verifica si hay que hacer algun cambio en el template html
+      luego viene afterContentChecked
+      y afterViewChecked
+    */
     console.log('ngDoCheck');
     
   }
@@ -38,12 +59,17 @@ export class Pagina1Component implements OnInit, OnChanges,
     
   }
   ngOnDestroy(): void {
+    /*
+      Se llama cuando el componente es destruido, despues.
+      Es muy utl cuando tienes observable, timmers etc.
+    */
     console.log('ngOnDestroy');
     
   }
 
-  ngOnInit(): void {
-    console.log('ngOnInit');
-  }
+  guardar(){
 
+  }
+  
+  
 }
